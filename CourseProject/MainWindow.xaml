@@ -1,0 +1,111 @@
+﻿<Window x:Class="CourseProject.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CourseProject"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Title="Cryptographer" Height="700" Width="1400"
+        >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="330"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0" Panel.ZIndex="1" Background="#FFFFFF">
+            <Border.Effect>
+                <DropShadowEffect Color="#D1D1D1" BlurRadius="30"  ShadowDepth="10" Opacity="1" />
+            </Border.Effect>
+        </Border>
+
+        <Grid Panel.ZIndex="1">
+            <Grid.Background>
+                <ImageBrush ImageSource="D:\C#\CourseProject\1.jpg" Stretch="UniformToFill" Opacity="0.6" />
+            </Grid.Background>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="90"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Border Margin="10,0,10,0" Background="#9C27B3" BorderBrush="#E3E4E8"  BorderThickness="0 0 0 1"/>
+            <TextBlock Text="Cryptographer" Foreground="White" FontWeight="Bold" FontSize="36"  HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="iconfont"/>
+
+            <StackPanel Grid.Row="1">
+
+                <Button Width="250" Height="60" Margin="15 30 15 0"  FontSize="16" HorizontalContentAlignment="Left"
+                        Background="Transparent" BorderBrush="Transparent" Click="open_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="✐" FontSize="26" Foreground="#FF9C27B3" VerticalAlignment="Center" />
+                        <TextBlock x:Name="openBlock" Text="Open File" Margin="15 0 0 0" VerticalAlignment="Center" Foreground="#FFFFFF" FontFamily="iconfont" FontWeight="Bold"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Width="250" Height="60" Margin="15 30 15 0"  FontSize="16" HorizontalContentAlignment="Left"
+                        Background="Transparent" BorderBrush="Transparent" Click="save_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="☑" FontSize="26" Foreground="#FF9C27B3" VerticalAlignment="Center"/>
+                        <TextBlock x:Name="saveBlock" Text="Save File" Foreground="#FFFFFF" Margin="15 0 0 0"  VerticalAlignment="Center" FontFamily="iconfont" FontWeight="Bold"/>
+                    </StackPanel>
+                </Button>
+                <Button Width="250" Height="60" Margin="15 30 15 0"  FontSize="16" HorizontalContentAlignment="Left"
+                        Background="Transparent" BorderBrush="Transparent" Click="encrypt_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Ⓔ" FontSize="26" Foreground="#FF9C27B3" VerticalAlignment="Center" />
+                        <TextBlock x:Name="encryptBlock" Text="Encrypt File" Margin="15 0 0 0" VerticalAlignment="Center" Foreground="#FFFFFF" FontFamily="iconfont" FontWeight="Bold"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Width="250" Height="60" Margin="15 30 15 0"  FontSize="16" HorizontalContentAlignment="Left"
+                        Background="Transparent" BorderBrush="Transparent" Click="decrypt_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Ⓓ" FontSize="26" Foreground="#FF9C27B3" VerticalAlignment="Center"/>
+                        <TextBlock x:Name="decryptBlock" Text="Decrypt File" Foreground="#FFFFFF" Margin="15 0 0 0"  VerticalAlignment="Center" FontFamily="iconfont" FontWeight="Bold"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+
+        </Grid>
+
+        <Grid Grid.Column="1" Margin="0,0,0,1" Panel.ZIndex="0">
+            <Grid.Background>
+                <ImageBrush ImageSource="D:\C#\CourseProject\Cryptography.png" Stretch="UniformToFill" Opacity="0.45" />
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="77"/>
+                <RowDefinition Height="490"/>
+                <RowDefinition Height="133"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Vigenère cipher" FontSize="30" FontWeight="Light" Margin="10,7,40,0" VerticalAlignment="Top" FontFamily="Elephant" Height="40"/>
+            <TextBlock Text="a method of polyalphabetic encryption of literal text using a keyword." FontSize="14" FontWeight="Light" Margin="10,51,40,0" VerticalAlignment="Top" FontFamily="iconfont" Height="23"/>
+
+            <TextBox x:Name="sourceTB" 
+                         TextWrapping="Wrap"
+                         ScrollViewer.VerticalScrollBarVisibility="Auto"
+                         SelectionBrush="White"
+                         AcceptsReturn="True" VerticalAlignment="Top"
+                         FontSize="14" Background="White" Height="430" Grid.Row="1" Margin="10,50,580,0" BorderBrush="#FF9C27B3" TextChanged="sourceTB_TextChanged" Text="Your text..."/>
+            <TextBox x:Name="resultTB" 
+                         Margin="575,50,25,0"
+                         TextWrapping="Wrap"
+                         ScrollViewer.VerticalScrollBarVisibility="Auto"
+                         SelectionBrush="White"
+                         AcceptsReturn="True" VerticalAlignment="Top"
+                         FontSize="14" Background="White" Height="430" Grid.Row="1" BorderBrush="#FF9C27B3" Text="Encrypted/decrypted text..." TextChanged="resultTB_TextChanged"/>
+            <TextBox x:Name="keyTB" 
+                    FontSize="20" 
+                    Background="#9C27B3"
+                    TextAlignment="Center"
+                    AcceptsReturn="True"
+                    FontFamily="iconfont" Margin="10,0,10,0" SelectionBrush="White" Text="Your key..." Foreground="White" Grid.Row="2" Height="30" VerticalAlignment="Center"/>
+            <Label x:Name="label" Content="Source" HorizontalAlignment="Left" Margin="217,16,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="20" FontFamily="iconfont" Background="#9C27B3"
+                   Foreground="White"/>
+            <Label x:Name="label_Copy" Content="Result" HorizontalAlignment="Left" Margin="778,16,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="20" FontFamily="iconfont" Background="#9C27B3"
+                   Foreground="White"/>
+        </Grid>
+    </Grid>
+</Window>
